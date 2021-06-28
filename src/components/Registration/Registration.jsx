@@ -1,11 +1,22 @@
+import { useMutation } from '@apollo/client'
 import React, { useState } from 'react'
+import CREATE_CONTACT from '../../graphQLSchemas/addContact'
 
 const Registration = () => {
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
+  const [createContact] = useMutation(CREATE_CONTACT)
 
   const onSubmit = (event) => {
     event.preventDefault()
+    createContact({
+      variables: {
+        input: {
+          first_name: firstName,
+          last_name: lastName
+        }
+      }
+    })
     alert(`${firstName} ${lastName}`)
   }
 

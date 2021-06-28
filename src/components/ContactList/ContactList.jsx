@@ -12,6 +12,12 @@ const ContactList = () => {
       </div>
     )
   }
+
+  if (error) {
+    return (
+      <span className="visually-hidden">Some error occurred. Please, reload the page </span>
+    )
+  }
   const contactsBlock = data.getContacts.map((contact) => {
     return (
       <li className="list-group-item" key={contact.id}>{contact.first_name}</li>
