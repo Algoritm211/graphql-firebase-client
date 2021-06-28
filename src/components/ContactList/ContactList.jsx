@@ -1,9 +1,13 @@
 import { useQuery } from '@apollo/client'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { GET_ALL_CONTACTS } from '../../graphQLSchemas/getAllContacts.js'
 
 const ContactList = () => {
-  const { loading, error, data } = useQuery(GET_ALL_CONTACTS)
+  const { loading, error, data, refetch } = useQuery(GET_ALL_CONTACTS)
+
+  useEffect(() => {
+    refetch()
+  }, [data, refetch])
 
   if (loading) {
     return (
